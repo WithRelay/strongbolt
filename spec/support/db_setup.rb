@@ -18,7 +18,7 @@ ActiveRecord::Base.establish_connection(connection_spec)
 
 # Models used during the tests
 
-class TestsMigrations < ActiveRecord::Migration
+class TestsMigrations < ActiveRecord::Migration[4.2]
   def change
     create_table :users, force: true do |t|
       t.string :username
