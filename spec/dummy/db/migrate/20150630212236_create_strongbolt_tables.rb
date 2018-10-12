@@ -9,7 +9,7 @@ class CreateStrongboltTables < ActiveRecord::Migration
       t.boolean  :require_ownership, default: false, null: false
       t.boolean  :require_tenant_access, default: true, null: false
 
-      t.timestamps
+      t.timestamps null: false
     end
 
     create_table :strongbolt_roles, force: true do |t|
@@ -19,14 +19,14 @@ class CreateStrongboltTables < ActiveRecord::Migration
       t.integer  :rgt
       t.string   :description
 
-      t.timestamps
+      t.timestamps null: false
     end
 
     create_table :strongbolt_user_groups, force: true do |t|
       t.string :name
       t.text :description
 
-      t.timestamps
+      t.timestamps null: false
     end
 
     create_table :strongbolt_user_groups_users, id: false, force: true do |t|

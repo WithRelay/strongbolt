@@ -23,7 +23,7 @@ class TestsMigrations < ActiveRecord::Migration[4.2]
     create_table :users, force: true do |t|
       t.string :username
 
-      t.timestamps
+      t.timestamps null: false
     end
 
     create_table :models, force: true do |t|
@@ -32,7 +32,7 @@ class TestsMigrations < ActiveRecord::Migration[4.2]
       t.integer :user_id
       t.integer :parent_id
 
-      t.timestamps
+      t.timestamps null: false
     end
 
     create_table :child_models, force: true do |t|
@@ -40,7 +40,7 @@ class TestsMigrations < ActiveRecord::Migration[4.2]
       t.string  :model_type
       t.integer :parent_id
 
-      t.timestamps
+      t.timestamps null: false
     end
 
     create_table :other_child_models, force: true do |t|
@@ -49,14 +49,14 @@ class TestsMigrations < ActiveRecord::Migration[4.2]
       t.integer :other_model_id
       t.string  :other_model_type
 
-      t.timestamps
+      t.timestamps null: false
     end
 
     create_table :unowned_models, force: true do |t|
       t.string :name
       t.string :value
 
-      t.timestamps
+      t.timestamps null: false
     end
 
     create_table :model_models, force: true do |t|
@@ -67,13 +67,13 @@ class TestsMigrations < ActiveRecord::Migration[4.2]
     create_table :tenant_a, force: true do |t|
       t.string :name
 
-      t.timestamps
+      t.timestamps null: false
     end
 
     create_table :tenant_b, force: true do |t|
       t.string :name
 
-      t.timestamps
+      t.timestamps null: false
     end
 
     create_table :model_with_tenants, force: true do |t|
@@ -81,7 +81,7 @@ class TestsMigrations < ActiveRecord::Migration[4.2]
       t.integer :tenant_a_id
       t.integer :tenant_b_id
 
-      t.timestamps
+      t.timestamps null: false
     end
 
     create_table :strongbolt_capabilities, force: true do |t|
@@ -93,7 +93,7 @@ class TestsMigrations < ActiveRecord::Migration[4.2]
       t.boolean  :require_ownership, default: false, null: false
       t.boolean  :require_tenant_access, default: true, null: false
 
-      t.timestamps
+      t.timestamps null: false
     end
 
     create_table :strongbolt_roles, force: true do |t|
@@ -103,14 +103,14 @@ class TestsMigrations < ActiveRecord::Migration[4.2]
       t.integer  :rgt
       t.string   :description
 
-      t.timestamps
+      t.timestamps null: false
     end
 
     create_table :strongbolt_user_groups, force: true do |t|
       t.string :name
       t.text :description
 
-      t.timestamps
+      t.timestamps null: false
     end
 
     create_table :strongbolt_user_groups_users, force: true do |t|
