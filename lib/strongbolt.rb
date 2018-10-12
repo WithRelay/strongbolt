@@ -30,6 +30,14 @@ if ar_version >= '4.1.0' && ar_version <= '4.1.1'
   raise StandardError, 'You cannot use Strongbolt with ActiveRecord versions 4.1.0 and 4.1.1. Please upgrade to >= 4.1.2'
 end
 
+if Rails.version < '5.0.0'
+  class ActiveRecord::Migration
+    def self.[](_version)
+      return ActiveRecord::Migration
+    end
+  end
+end
+
 #
 # Includes every module needed (including Grant)
 #
