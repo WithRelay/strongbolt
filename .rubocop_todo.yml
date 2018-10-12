@@ -13,11 +13,6 @@ Lint/HandleExceptions:
     - 'spec/support/helpers.rb'
 
 # Offense count: 1
-Lint/LiteralInCondition:
-  Exclude:
-    - 'lib/strongbolt/rspec/user.rb'
-
-# Offense count: 1
 Lint/ShadowingOuterLocalVariable:
   Exclude:
     - 'lib/strongbolt/tenantable.rb'
@@ -67,11 +62,6 @@ Style/Lambda:
     - 'lib/strongbolt/tenantable.rb'
 
 # Offense count: 1
-Style/MethodMissing:
-  Exclude:
-    - 'lib/strongbolt/configuration.rb'
-
-# Offense count: 1
 # Cop supports --auto-correct.
 # Configuration parameters: AutoCorrect, EnforcedStyle, SupportedStyles.
 # SupportedStyles: predicate, comparison
@@ -79,13 +69,3 @@ Style/NumericPredicate:
   Exclude:
     - 'spec/**/*'
     - 'lib/strongbolt/role.rb'
-
-# Offense count: 1
-# Configuration parameters: NamePrefix, NamePrefixBlacklist, NameWhitelist.
-# NamePrefix: is_, has_, have_
-# NamePrefixBlacklist: is_, has_, have_
-# NameWhitelist: is_a?
-Style/PredicateName:
-  Exclude:
-    - 'spec/**/*'
-    - 'lib/strongbolt/user_abilities.rb'
