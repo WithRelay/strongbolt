@@ -16,7 +16,7 @@ module Strongbolt
     describe 'GET #index' do
       before { get :index }
 
-      it { should be_success }
+      it { should be_successful }
 
       it { should render_template :index }
 
@@ -31,7 +31,7 @@ module Strongbolt
     describe 'GET #new' do
       before { get :new }
 
-      it { should be_success }
+      it { should be_successful }
 
       it { should render_template :new }
     end
@@ -46,7 +46,7 @@ module Strongbolt
 
       before { get :show, params: { id: role.id } }
 
-      it { should be_success }
+      it { should be_successful }
 
       it 'should assign role' do
         expect(assigns(:role)).to eq role
@@ -65,7 +65,7 @@ module Strongbolt
     describe 'GET #edit' do
       before { get :edit, params: { id: role.id } }
 
-      it { should be_success }
+      it { should be_successful }
 
       it 'should assign role' do
         expect(assigns(:role)).to eq role

@@ -2,7 +2,7 @@ module Strongbolt
   class RolesController < ::StrongboltController
     def index
       @roles = Role.includes(:parent)
-                   .order('parent_id IS NOT NULL', 'parent_id', 'name')
+                   .order(Arel.sql('parent_id IS NOT NULL'), 'parent_id', 'name')
     end
 
     def new

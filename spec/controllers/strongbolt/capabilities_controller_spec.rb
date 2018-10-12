@@ -14,7 +14,7 @@ module Strongbolt
     #     get :index
     #   end
 
-    #   it { should be_success }
+    #   it { should be_successful }
 
     #   it { should render_template :index }
 
@@ -33,7 +33,7 @@ module Strongbolt
 
     #   before { get :show, id: capability.id }
 
-    #   it { should be_success }
+    #   it { should be_successful }
 
     #   it { should render_template :show }
 

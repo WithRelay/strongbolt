@@ -14,7 +14,7 @@ module Strongbolt
     describe 'GET #index' do
       before { get :index }
 
-      it { should be_success }
+      it { should be_successful }
 
       it { should render_template :index }
 
@@ -29,7 +29,7 @@ module Strongbolt
     describe 'GET #new' do
       before { get :new }
 
-      it { should be_success }
+      it { should be_successful }
 
       it { should render_template :new }
     end
@@ -40,7 +40,7 @@ module Strongbolt
     describe 'GET #show' do
       before { get :show, params: { id: user_group.id } }
 
-      it { should be_success }
+      it { should be_successful }
 
       it 'should assign user group' do
         expect(assigns(:user_group)).to eq user_group
@@ -55,7 +55,7 @@ module Strongbolt
     describe 'GET #edit' do
       before { get :edit, params: { id: user_group.id } }
 
-      it { should be_success }
+      it { should be_successful }
 
       it 'should assign user group' do
         expect(assigns(:user_group)).to eq user_group
