@@ -55,8 +55,8 @@ module Strongbolt
       end
 
       it 'should have the right ones' do
-        expect(inherited_capabilities).to include @inherited1
-        expect(inherited_capabilities).to include @inherited2
+        expect(inherited_capabilities.to_a).to include @inherited1
+        expect(inherited_capabilities.to_a).to include @inherited2
       end
     end
 

@@ -38,7 +38,7 @@ module Strongbolt
     # GET #show
     #
     describe 'GET #show' do
-      before { get :show, id: user_group.id }
+      before { get :show, params: { id: user_group.id } }
 
       it { should be_success }
 
@@ -53,7 +53,7 @@ module Strongbolt
     # GET #edit
     #
     describe 'GET #edit' do
-      before { get :edit, id: user_group.id }
+      before { get :edit, params: { id: user_group.id } }
 
       it { should be_success }
 
@@ -68,7 +68,7 @@ module Strongbolt
     # POST #create
     #
     describe 'POST #create' do
-      let(:create) { post :create, user_group: attributes }
+      let(:create) { post :create, params: { user_group: attributes } }
 
       context 'when valid attributes' do
         let(:attributes) { valid_attributes }
@@ -110,7 +110,7 @@ module Strongbolt
     # PUT #update
     #
     describe 'PUT #update' do
-      before { put :update, id: user_group.id, user_group: attributes }
+      before { put :update, params: { id: user_group.id, user_group: attributes } }
 
       context 'when valid attributes' do
         let(:attributes) { valid_attributes }
@@ -141,7 +141,7 @@ module Strongbolt
     # DELETE #destroy
     #
     describe 'DELETE #destroy' do
-      let(:destroy) { delete :destroy, id: user_group.id }
+      let(:destroy) { delete :destroy, params: { id: user_group.id } }
 
       context 'when no user' do
         it 'should redirect to index' do

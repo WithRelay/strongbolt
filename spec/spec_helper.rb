@@ -37,10 +37,79 @@ require 'shoulda/matchers'
 require 'rspec/rails'
 require 'fabrication'
 require 'database_cleaner'
+if Rails.version >= '5.0.0'
+  require 'rails-controller-testing'
+end
 
 # Requires supporting files with custom matchers and macros, etc,
 # in ./support/ and its subdirectories.
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
+
+module ActionControllerTestCaseBehaviorCompatibility
+  def get(action, **args)
+    if Rails.version < '5.0.0'
+      parameters, session, flash = self.__strongbolt_params_compatibility(args)
+      super(action, parameters, session, flash)
+    else
+      super
+    end
+  end
+
+  def post(action, **args)
+    if Rails.version < '5.0.0'
+      parameters, session, flash = self.__strongbolt_params_compatibility(args)
+      super(action, parameters, session, flash)
+    else
+      super
+    end
+  end
+
+  def patch(action, **args)
+    if Rails.version < '5.0.0'
+      parameters, session, flash = self.__strongbolt_params_compatibility(args)
+      super(action, parameters, session, flash)
+    else
+      super
+    end
+  end
+
+  def put(action, **args)
+    if Rails.version <= '5.0.0'
+      parameters, session, flash = self.__strongbolt_params_compatibility(args)
+      super(action, parameters, session, flash)
+    else
+      super
+    end
+  end
+
+  def delete(action, **args)
+    if Rails.version < '5.0.0'
+      parameters, session, flash = self.__strongbolt_params_compatibility(args)
+      super(action, parameters, session, flash)
+    else
+      super
+    end
+  end
+
+  def head(action, **args)
+    if Rails.version < '5.0.0'
+      parameters, session, flash = self.__strongbolt_params_compatibility(args)
+      super(action, parameters, session, flash)
+    else
+      super
+    end
+  end
+
+  def __strongbolt_params_compatibility(**args)
+    parameters, session, flash = args
+    parameters ||= {}
+    return parameters.delete(:params), session, flash
+  end
+end
+
+module ActionController::TestCase::Behavior
+  prepend ActionControllerTestCaseBehaviorCompatibility
+end
 
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
@@ -94,4 +163,12 @@ RSpec.configure do |config|
     fabrication_config.path_prefix = File.expand_path('../..', __FILE__)
   end
   puts File.expand_path('../..', __FILE__)
+
+  if Rails.version >= '5.0.0'
+    [:controller, :view, :request].each do |type|
+      config.include ::Rails::Controller::Testing::TestProcess, :type => type
+      config.include ::Rails::Controller::Testing::TemplateAssertions, :type => type
+      config.include ::Rails::Controller::Testing::Integration, :type => type
+    end
+  end
 end

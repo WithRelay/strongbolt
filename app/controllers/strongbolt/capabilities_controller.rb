@@ -39,7 +39,7 @@ module Strongbolt
                        capability_params
                      end
 
-        @capability = @role.capabilities.find_by(conditions)
+        @capability = @role.capabilities.find_by!(conditions)
         @role.capabilities.delete @capability
 
         respond_to do |format|
@@ -61,8 +61,13 @@ module Strongbolt
     private
 
     def capability_params
-      params.require(:capability).permit(:model, :action,
+      tmp = params.require(:capability).permit(:model, :action,
                                          :require_ownership, :require_tenant_access)
+      if Rails.version >= '5.0.0'
+        tmp[:require_ownership] = (tmp[:require_ownership] == 'true')
+        tmp[:require_tenant_access] = (tmp[:require_tenant_access] == 'true')
+      end
+      tmp
     end
   end
 end

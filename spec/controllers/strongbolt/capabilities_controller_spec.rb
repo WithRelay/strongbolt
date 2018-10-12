@@ -46,7 +46,7 @@ module Strongbolt
     # POST #create
     #
     describe 'POST #create' do
-      let(:create) { post :create, capability: attributes }
+      let(:create) { post :create, params: { capability: attributes } }
 
       # context "when valid attributes" do
       #   let(:attributes) { Fabricate.attributes_for :capability }
@@ -68,7 +68,7 @@ module Strongbolt
         let(:attributes) { Fabricate.attributes_for :capability }
 
         context 'html' do
-          let(:create) { post :create, capability: attributes, role_id: role.id }
+          let(:create) { post :create, params: { capability: attributes, role_id: role.id } }
 
           it 'should redirect to role' do
             create
@@ -83,7 +83,7 @@ module Strongbolt
         end
 
         context 'json' do |_variable|
-          let(:create) { post :create, capability: attributes, role_id: role.id, format: :json }
+          let(:create) { post :create, params: { capability: attributes, role_id: role.id, format: :json } }
 
           it 'should redirect to role' do
             create
@@ -136,7 +136,7 @@ module Strongbolt
 
       let(:capability) { @capability }
 
-      let(:destroy) { delete :destroy, id: capability.id }
+      let(:destroy) { delete :destroy, params: { id: capability.id } }
 
       # context "when no roles" do
 
@@ -185,7 +185,7 @@ module Strongbolt
         end
 
         context 'when capability id given' do
-          let(:destroy) { delete :destroy, id: capability.id, role_id: role.id }
+          let(:destroy) { delete :destroy, params: { id: capability.id, role_id: role.id } }
 
           it 'should not delete a capability' do
             expect do
@@ -212,7 +212,7 @@ module Strongbolt
               action: capability.action }
           end
 
-          let(:destroy) { delete :destroy, role_id: role.id, capability: capability.attributes, format: :json }
+          let(:destroy) { delete :destroy, params: { role_id: role.id, capability: capability.attributes, format: :json } }
 
           it 'should not delete a capability' do
             expect do

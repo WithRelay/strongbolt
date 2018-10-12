@@ -22,10 +22,10 @@ describe PostsController, type: :controller do
   def perform(action)
     case action
     when :index, :new then get action
-    when :show, :edit then get action, id: 1
-    when :update then put :update, id: 1
+    when :show, :edit then get action, params: { id: 1 }
+    when :update then put :update, params: { id: 1 }
     when :create then post :create
-    when :destroy then delete :destroy, id: 1
+    when :destroy then delete :destroy, params: { id: 1 }
     end
   end
 
@@ -585,7 +585,7 @@ describe PostsController, type: :controller do
       end
 
       it 'should perform without auth when show' do
-        get :show, id: 1
+        get :show, params: { id: 1 }
       end
     end
 
@@ -601,7 +601,7 @@ describe PostsController, type: :controller do
 
       it 'should not perform without auth when show' do
         expect(Strongbolt).not_to receive(:without_authorization)
-        get :show, id: 1
+        get :show, params: { id: 1 }
       end
     end
   end

@@ -12,7 +12,7 @@ module Strongbolt
     #
     describe 'POST #create' do
       context 'when valid user group and user' do
-        before { post :create, user_group_id: user_group.id, id: user.id }
+        before { post :create, params: { user_group_id: user_group.id, id: user.id } }
 
         it { should redirect_to user_group_path(user_group) }
 
@@ -22,7 +22,7 @@ module Strongbolt
         end
 
         context 'when redoing' do
-          before { post :create, user_group_id: user_group.id, id: user.id }
+          before { post :create, params: { user_group_id: user_group.id, id: user.id } }
 
           it { should redirect_to user_group_path(user_group) }
 
@@ -40,7 +40,7 @@ module Strongbolt
       context 'when valid user group and user' do
         before do
           user_group.users << user
-          delete :destroy, user_group_id: user_group.id, id: user.id
+          delete :destroy, params: { user_group_id: user_group.id, id: user.id }
         end
 
         it { should redirect_to user_group_path(user_group) }
@@ -51,7 +51,7 @@ module Strongbolt
         end
 
         context 'when redoing' do
-          before { delete :destroy, user_group_id: user_group.id, id: user.id }
+          before { delete :destroy, params: { user_group_id: user_group.id, id: user.id } }
 
           it { should redirect_to user_group_path(user_group) }
         end

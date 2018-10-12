@@ -44,7 +44,7 @@ module Strongbolt
       let(:role2) { Fabricate :role, parent: role }
       let!(:role3) { Fabricate :role, parent: role2 }
 
-      before { get :show, id: role.id }
+      before { get :show, params: { id: role.id } }
 
       it { should be_success }
 
@@ -63,7 +63,7 @@ module Strongbolt
     # GET #edit
     #
     describe 'GET #edit' do
-      before { get :edit, id: role.id }
+      before { get :edit, params: { id: role.id } }
 
       it { should be_success }
 
@@ -78,7 +78,7 @@ module Strongbolt
     # POST #create
     #
     describe 'POST #create' do
-      let(:create) { post :create, role: attributes }
+      let(:create) { post :create, params: { role: attributes } }
 
       context 'when valid attributes' do
         let(:attributes) { valid_attributes }
@@ -120,7 +120,7 @@ module Strongbolt
     # PUT #update
     #
     describe 'PUT #update' do
-      before { put :update, id: role.id, role: attributes }
+      before { put :update, params: { id: role.id, role: attributes } }
 
       context 'when valid attributes' do
         let(:attributes) { valid_attributes }
@@ -151,7 +151,7 @@ module Strongbolt
     # DELETE #destroy
     #
     describe 'DELETE #destroy' do
-      let(:destroy) { delete :destroy, id: role.id }
+      let(:destroy) { delete :destroy, params: { id: role.id } }
 
       context 'when no user' do
         it 'should redirect to index' do
